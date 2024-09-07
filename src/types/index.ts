@@ -1,0 +1,1 @@
+export type TproductName = "title" | "description" | "price" | "image" 
