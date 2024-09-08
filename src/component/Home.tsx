@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import {XMarkIcon } from '@heroicons/react/24/outline'
 import Button from './ui/Button'
-
+import logoImag from "../../public/file.png"
 const navigation = [
   { name: 'Product', href: '#' },
   { name: 'Features', href: '#' },
@@ -24,7 +24,7 @@ export default function Home({openModal}:{openModal:()=>void}) {
               <span className="sr-only">Your Company</span>
               <img
                 alt=""
-                src="https://www.cars.com/images/cars_logo_primary@2x-369317d81682f33d21c8fbdc7959f837.png?vsn=d"
+                src={logoImag}
                 className="h-8 w-auto"
               />
             </a>
@@ -59,7 +59,7 @@ export default function Home({openModal}:{openModal:()=>void}) {
                 <span className="sr-only">Your Company</span>
                 <img
                   alt=""
-                  src="https://www.cars.com/images/cars_logo_primary@2x-369317d81682f33d21c8fbdc7959f837.png?vsn=d"
+                  src="logoImag"
                   className="h-8 w-auto"
                 />
               </a>
