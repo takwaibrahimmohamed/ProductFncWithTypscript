@@ -14,6 +14,7 @@ import { v4 as uuid } from 'uuid'
 import Select from './component/ui/Select'
 import { TproductName } from './types'
 import toast, { Toaster } from 'react-hot-toast';
+import Home from './component/Home'
 
 function App() {
   const defaultProduct={
@@ -56,16 +57,16 @@ function App() {
     setisEditOpen(false)
   }
 
-  function openEditModal() {
-    setisEditOpen(true)
-  }
+  // function openEditModal() {
+  //   setisEditOpen(true)
+  // }
   function closeconfirmDeleteModal() {
     setOpenConfirmDelete(false)
   }
 
-  function openconfirmDeleteModal() {
-    setOpenConfirmDelete(true)
-  }
+  // function openconfirmDeleteModal() {
+  //   setOpenConfirmDelete(true)
+  // }
   const onChangeHandler=(event:ChangeEvent<HTMLInputElement>)=>{
 const {value,name}=event.target
 setProduct({
@@ -218,104 +219,109 @@ const removed = allproduct.filter(item=>item.id !== editProduct.id)
   })
 }
   return (
-   <main className='container mx-auto my-5'>
-      <Button className=" bg-indigo-700 hover:bg-indigo-900 flex justify-center items-center mx-auto max-w-40" 
-      onClick={openModal}>ADD</Button>
-     <div className='m-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 p-2 rounded-md'>
-   {renderProductList}
-    </div>
-    {/* add model */}
-    <Modal isOpen={isOpen} closeModal={closeModal} title='ADD NEW PRODUCT'>
-   
-    <form className='space-y-2' onSubmit={submitHandler}>
-    {formList}
-    <Select selected={selected} setSelected={setSelected}/>
-    <div className="flex space-x-2 mt-3">
-      {
-        ColorCircle.map(color=><CircleColor key={color} bgColor={color} onClick={()=>
-        {
-          
-          if(temp.includes(color)){
-           setTemp(temp.filter((item)=>item !== color))
-            return
-          }
-          setTemp(prev=>[...prev,color])
-        }
-        }/>)
-      }
-    </div>
+    <>
+      <Home openModal={openModal}/>
+      <main className='container mx-auto my-10 pt-15'>
+    
+    {/* <Button className=" bg-indigo-700 hover:bg-indigo-900 flex justify-center items-center mx-auto max-w-40" 
+    onClick={openModal}>ADD</Button> */}
+   <div className='m-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 p-2 rounded-md'>
+ {renderProductList}
+  </div>
+  {/* add model */}
+  <Modal isOpen={isOpen} closeModal={closeModal} title='ADD NEW PRODUCT' >
  
-    <div className="flex space-x-1 mt-3 flex-wrap">
+  <form className='space-y-2 z-40' onSubmit={submitHandler}>
+  {formList}
+  <Select selected={selected} setSelected={setSelected}/>
+  <div className="flex space-x-2 mt-3">
+    {
+      ColorCircle.map(color=><CircleColor key={color} bgColor={color} onClick={()=>
       {
-        temp.map(color=><span key={color} className='text-white p-1 mb-1 rounded-md'  style={{backgroundColor:color}}>{color}</span>)
-      }
-    </div>
-    <div className='flex justify-between items-center space-x-2'>
-    
-    <Button className=" bg-indigo-700 hover:bg-indigo-900" width="w-full">Submit</Button>
-    <Button className=" bg-red-700 hover:bg-red-900" width="w-full" onClick={cancel}>Cancel</Button>
-    </div>
-    </form>
-   
-    </Modal>
-    {/* edit model */}
-    <Modal isOpen={isEditOpen} closeModal={closeEditModal} title='edit PRODUCT'>
-   
-    <form className='space-y-2' onSubmit={submitEditHandler}>
-   {editProductInput("title","Product title","title")}
-   {editProductInput("description","Product description","description")}
-   {editProductInput("image","ImageUrl","image")}
-   {editProductInput("price","Product price","price")}
-    
-    <Select selected={editProduct.category} setSelected={(value)=>seteditProduct({...editProduct,category:value})}/>
-    <div className="flex space-x-2 mt-3">
-      {
-        ColorCircle.map(color=><CircleColor key={color} bgColor={color} onClick={()=>
-        {
-          
-          if(temp.includes(color)){
-           setTemp(temp.filter((item)=>item !== color))
-            return
-          }
-          if(editProduct.colors.includes(color)){
-           setTemp(temp.filter((item)=>item !== color))
-            return
-          }
-          setTemp(prev=>[...prev,color])
+        
+        if(temp.includes(color)){
+         setTemp(temp.filter((item)=>item !== color))
+          return
         }
-        }/>)
+        setTemp(prev=>[...prev,color])
       }
-    </div>
+      }/>)
+    }
+  </div>
+
+  <div className="flex space-x-1 mt-3 flex-wrap">
+    {
+      temp.map(color=><span key={color} className='text-white p-1 mb-1 rounded-md'  style={{backgroundColor:color}}>{color}</span>)
+    }
+  </div>
+  <div className='flex justify-between items-center space-x-2'>
+  
+  <Button className=" bg-indigo-700 hover:bg-indigo-900" width="w-full">Submit</Button>
+  <Button className=" bg-red-700 hover:bg-red-900" width="w-full" onClick={cancel}>Cancel</Button>
+  </div>
+  </form>
  
-    <div className="flex space-x-1 mt-3 flex-wrap">
+  </Modal>
+  {/* edit model */}
+  <Modal isOpen={isEditOpen} closeModal={closeEditModal} title='edit PRODUCT'>
+ 
+  <form className='space-y-2' onSubmit={submitEditHandler}>
+ {editProductInput("title","Product title","title")}
+ {editProductInput("description","Product description","description")}
+ {editProductInput("image","ImageUrl","image")}
+ {editProductInput("price","Product price","price")}
+  
+  <Select selected={editProduct.category} setSelected={(value)=>seteditProduct({...editProduct,category:value})}/>
+  <div className="flex space-x-2 mt-3">
+    {
+      ColorCircle.map(color=><CircleColor key={color} bgColor={color} onClick={()=>
       {
-        temp.concat(editProduct.colors).map(color=><span key={color} className='text-white p-1 mb-1 rounded-md'  style={{backgroundColor:color}}>{color}</span>)
+        
+        if(temp.includes(color)){
+         setTemp(temp.filter((item)=>item !== color))
+          return
+        }
+        if(editProduct.colors.includes(color)){
+         setTemp(temp.filter((item)=>item !== color))
+          return
+        }
+        setTemp(prev=>[...prev,color])
       }
-    </div>
-    <div className='flex justify-between items-center space-x-2'>
-    
-    <Button className=" bg-indigo-700 hover:bg-indigo-900" width="w-full">Submit</Button>
-    <Button className=" bg-red-700 hover:bg-red-900" width="w-full" onClick={cancel}>Cancel</Button>
-    </div>
-    </form>
-   
-    </Modal>
-    {/* remove cart */}
-    <Modal isOpen={OpenConfirmDelete}
-     closeModal={closeconfirmDeleteModal} 
-     title='Are  You Sure You want remove this product'
-      description="You are about to remove the following item from your list,This action cannot be undone. Please confirm if you would like to proceed with the removal."
-     >
-    
-    <div className='flex justify-between items-center space-x-2'>
-    
-    <Button className=" bg-[#c2344d] hover:bg-red-800" width="w-full" onClick={removeProduct}>Yes, remove</Button>
-    <Button className=" bg-gray-500 hover:bg-gray-600" width="w-full" onClick={closeconfirmDeleteModal}>Cancel</Button>
-    </div>
-   
-    </Modal>
-    <Toaster/>
-   </main>
+      }/>)
+    }
+  </div>
+
+  <div className="flex space-x-1 mt-3 flex-wrap">
+    {
+      temp.concat(editProduct.colors).map(color=><span key={color} className='text-white p-1 mb-1 rounded-md'  style={{backgroundColor:color}}>{color}</span>)
+    }
+  </div>
+  <div className='flex justify-between items-center space-x-2'>
+  
+  <Button className=" bg-indigo-700 hover:bg-indigo-900" width="w-full">Submit</Button>
+  <Button className=" bg-red-700 hover:bg-red-900" width="w-full" onClick={cancel}>Cancel</Button>
+  </div>
+  </form>
+ 
+  </Modal>
+  {/* remove cart */}
+  <Modal isOpen={OpenConfirmDelete}
+   closeModal={closeconfirmDeleteModal} 
+   title='Are  You Sure You want remove this product'
+    description="You are about to remove the following item from your list,This action cannot be undone. Please confirm if you would like to proceed with the removal."
+   >
+  
+  <div className='flex justify-between items-center space-x-2'>
+  
+  <Button className=" bg-[#c2344d] hover:bg-red-800" width="w-full" onClick={removeProduct}>Yes, remove</Button>
+  <Button className=" bg-gray-500 hover:bg-gray-600" width="w-full" onClick={closeconfirmDeleteModal}>Cancel</Button>
+  </div>
+ 
+  </Modal>
+  <Toaster/>
+ </main>
+    </>
+ 
   )
 }
 

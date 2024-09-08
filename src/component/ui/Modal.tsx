@@ -16,7 +16,7 @@ export default function Modal({isOpen,closeModal,title,description,children}:Ipr
      
 
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog as="div" className="relative z-50" onClose={closeModal}>
         <DialogBackdrop className="fixed inset-0 bg-white/60 backdrop-blur-sm" />
           <Transition.Child
             as={Fragment}
