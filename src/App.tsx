@@ -234,7 +234,7 @@ const removed = allproduct.filter(item=>item.id !== editProduct.id)
   <form className='space-y-2 z-40' onSubmit={submitHandler}>
   {formList}
   <Select selected={selected} setSelected={setSelected}/>
-  <div className="flex space-x-2 mt-3">
+  <div className="flex sm:space-x-1 space-x-2 mt-3">
     {
       ColorCircle.map(color=><CircleColor key={color} bgColor={color} onClick={()=>
       {

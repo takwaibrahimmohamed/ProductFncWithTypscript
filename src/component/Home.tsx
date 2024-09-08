@@ -30,7 +30,7 @@ export default function Home({openModal}:{openModal:()=>void}) {
             </a>
           </div>
           <div className="flex lg:hidden">
-          <Button className="  text-indigo-800 font-semibold flex justify-center items-center mx-auto max-w-40 rounded-3xl"  
+          <Button className="  text-indigo-950 font-semibold flex justify-center items-center mx-auto max-w-40 rounded-3xl"  
            onClick={openModal}>Add To List</Button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
@@ -41,7 +41,7 @@ export default function Home({openModal}:{openModal:()=>void}) {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Button className="  text-indigo-800 font-semibold flex justify-center items-center mx-auto max-w-40 rounded-3xl"  
+          <Button className="  text-indigo-900 font-semibold flex justify-center items-center mx-auto max-w-40 rounded-3xl"  
            onClick={openModal}>Add To List</Button>
             {/* <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
               Log in <span aria-hidden="true">&rarr;

@@ -5,7 +5,7 @@ interface Iprops extends HTMLAttributes<HTMLSpanElement>{
 }
 const CircleColor = ({bgColor,...rest} : Iprops) => {
   return (
-    <span className="w-5 h-5 rounded-full cursor-pointer" style={{backgroundColor: bgColor}} {...rest}/>
+    <span className="w-3 h-3 md:w-5 md:h-5 rounded-full cursor-pointer" style={{backgroundColor: bgColor}} {...rest}/>
   )
 }
 
